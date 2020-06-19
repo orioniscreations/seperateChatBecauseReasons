@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bootstrap-3.4.1-dist/css/personal-css.css">
+
+    <!--Favicon-->
+    <link rel="icon" type="image/ico" href="/IMG/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <title>Chat App</title>
+    <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="script.js"></script>
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Roleplay Room</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <button type="button" class="btn btn-link" style="color: white;" onclick="goBack()">Exit</button>
+
+                </li>
+
+            </ul>
+            <span class="navbar-text">
+                RPG Character Creator
+            </span>
+        </div>
+    </nav>
+
+
+</head>
+
+<body>
+
+    <!-- SCM Music Player https://www.scmplayer.net -->
+    <script type="text/javascript" src="https://www.scmplayer.net/script.js"
+        data-config="{'skin':'skins/black/skin.css','volume':50,'autoplay':false,'shuffle':true,'repeat':1,'placement':'top','showplaylist':false}"></script>
+    <!-- SCM Music Player script end -->
+
+
+    <div class="chat-back">
+
+
+        <div class="reaction icon">
+            <div class="container">
+                <div class="row" style="height: 100px;">
+                    <div class="col"></div>
+                    <div class="col">
+                        <img id="blah" src="#" alt="Player 1 Reaction Icon" />
+
+                    </div>
+                    <div class="col">
+                        <img id="blah2" src="#" alt="Player 2 Reaction Icon" />
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="message-container"></div>
+    </div>
+    <div class="chat-back">
+
+        <div id="send-icon">
+
+
+            <label for="p1icon" style="color: white;">Player 1 Icon:</label>
+            <input type='file' id="p1icon" onchange="sendP1Icon(this);" />
+
+
+            <label for="p2icon" style="color: white;">Player 2 Icon:</label>
+            <input type='file' id="p2icon" onchange="sendP2Icon(this);" />
+        </div>
+
+
+
+        <form id="send-container">
+
+
+            <input type="text" id="message-input">
+            <button type="submit" id="send-button">Send</button>
+        </form>
+    </div>
+</body>
+
+
+<script>
+    function sendP1Icon(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function sendP2Icon(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah2')
+                    .attr('src', e.target.result)
+                    .width(100)
+                    .height(100);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</html>
